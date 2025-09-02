@@ -1,6 +1,6 @@
 # QR-Code-Generator-Website
-A website to generate QR codes, made with HTML, CSS and JS.
- I completed this short, crisp and effective course on Udemy where I built a QR generator website using HTML, CSS and JS
+
+With the help of a short, crisp and effective course on Udemy, I built a QR generator website using HTML, CSS and JS
 
 Access my website here 👇
 https://manusqrgenerator.blogspot.com/
