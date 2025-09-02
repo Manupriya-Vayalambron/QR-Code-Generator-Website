@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        :root {
+  --baseColor: #606468;
+}
+
+.grid {
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: 480px;
+  display: grid;
+  gap: 0.875rem;
+  padding: 1rem;
+}
+
+
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.icon {
+  block-size: 1em;
+  display: inline-block;
+  fill: var(--iconFill);
+  inline-size: 1em;
+  vertical-align: middle;
+}
+
+:root {
+  --htmlFontSize: 100%;
+
+  --bodyBackgroundColor: #2c3338;
+  --bodyColor: var(--baseColor);
+  --bodyFontFamily: "Open Sans";
+  --bodyFontFamilyFallback: sans-serif;
+  --bodyFontSize: 0.875rem;
+  --bodyFontWeight: 400;
+  --bodyLineHeight: 1.5;
+}
+
+* {
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: var(--htmlFontSize);
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+  -ms-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #342d34;
+  color: white;
+  font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
+  font-size: 16px;
+  font-weight: var(--bodyFontWeight);
+  line-height: var(--bodyLineHeight);
+  margin: 0;
+  min-block-size: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+
+
+:root {
+  --anchorColor: #eee;
+}
+
+a {
+  color: var(--anchorColor);
+  outline: 0;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
+
+
+:root {
+  --formGap: 0.875rem;
+}
+
+input {
+  background-image: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+
+textarea {
+  background-image: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+
+select,option {
+  background-image: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+
+textarea,
+select,
+option,
+input[type="submit"] {
+  inline-size: 100%;
+}
+
+
+
+
+:root {
+  --loginBorderRadus: 0.25rem;
+  --loginColor: #eee;
+
+  --loginInputBackgroundColor: #3b4148;
+  --loginInputHoverBackgroundColor: #434a52;
+
+  --loginLabelBackgroundColor: #363b41;
+
+  --loginSubmitBackgroundColor: #ea4c88;
+  --loginSubmitColor: #eee;
+  --loginSubmitHoverBackgroundColor: #d44179;
+}
+
+.login {
+ 
+}
+
+
+textarea,
+select,
+option,
+input[type="submit"] {
+  border-radius: var(--loginBorderRadus);
+  padding: 0.875rem;
+  width: 100%;
+  max-width: 100%;
+  font-size: 16px;
+}
+
+
+
+
+textarea,option,select {
+  background-color: var(--loginInputBackgroundColor);
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+
+textarea:focus,
+textarea:hover {
+  background-color: var(--loginInputHoverBackgroundColor);
+}
+
+input[type="submit"] {
+background-color: #d75821;
+color: var(--loginSubmitColor);
+font-weight: 700;
+text-transform: uppercase;
+}
+
+input[type="submit"]:focus,
+input[type="submit"]:hover {
+  background-color: #d75821;
+}
+
+
+p {
+  margin-block: 1.5rem;
+  text-align: center;
+}
+
+
+/* Force mobile view for all screen sizes */
+@media screen {
+  html {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #342d34;
+  }
+
+  body {
+    min-height: -webkit-fill-available;
+    width: 100%;
+    max-width: 480px;
+    padding: 1rem;
+    font-size: 16px;
+  }
+
+  .grid {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.875rem;
+  }
+
+  textarea,
+  select,
+  option,
+  input[type="submit"] {
+    padding: 0.875rem;
+    font-size: 16px;
+    touch-action: manipulation;
+  }
+
+  input[type="submit"] {
+    padding: 1rem;
+    margin-top: 1rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        function genQR() {
+            var size = document.getElementById("size").value;
+            var text = document.getElementById("qrtext").value;
+            var img = document.getElementById("img");
+            var api="https://quickchart.io/chart?cht=qr&chs=";
+            if(text!="" && size=="100")
+            {
+                img.src=api+"100x100"+"&chl="+text;
+            }
+            else if(text!="" && size=="150")
+            {
+                img.src=api+"150x150"+"&chl="+text;
+            }
+            else if(text!="" && size=="200")
+            {
+                img.src=api+"200x200"+"&chl="+text;
+            }
+            else if(text!="" && size=="250")
+            {
+                img.src=api+"250x250"+"&chl="+text;
+            }
+            else if(text!="" && size=="300")
+            {
+                img.src=api+"300x300"+"&chl="+text;
+            }
+            else
+            {
+                alert("Please Enter Your Text");
+            }
+        }
+    </script>
+    <div class="grid">
+        <h2 align="center">QR Code Generator</h2>
+        <center>
+        <img src="" id="img">
+        </center>
+    </div>    
+    <select id="size">
+        <option value="100">100x100</option>
+        <option value="150">150x150</option>
+        <option value="200">200x200</option>
+        <option value="250" selected>250x250</option>
+        <option value="300">300x300</option>
+    </select><br>
+    <textarea id="qrtext" rows="10" cols="20" placeholder="Enter Your Text"></textarea><br>
+    <input type="submit" value="Generate QR Code" onclick="genQR()">
+   <p>Developed by Manupriya Dhanush Vayalambron</p>
+</body>
+</html>
