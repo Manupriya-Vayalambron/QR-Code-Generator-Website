@@ -2,7 +2,7 @@
 
 With the help of a short, crisp and effective course on Udemy, I built a QR generator website using HTML, CSS and JS
 
-Access my website here 👇
+Access my website here-
 https://manusqrgenerator.blogspot.com/
 
 The course guided me on the usage of Google Chart API, but since it is outdated, I used quickchart.io
